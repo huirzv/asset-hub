@@ -81,7 +81,7 @@ export interface ValidationIssue {
 
 export function getExtension(filename: string): string {
   const parts = filename.toLowerCase().split(".");
-  return parts.length > 1 ? parts[parts.length - 1] : "";
+  return parts.length > 1 ? (parts[parts.length - 1] ?? "") : "";
 }
 
 export type UploadSlot = "package" | "thumbnail" | "preview";
