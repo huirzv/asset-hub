@@ -8,9 +8,9 @@ import type { Asset } from "@/lib/types";
 
 interface AssetCardProps {
   asset: Asset;
-  isFavorite?: boolean;
-  onToggleFavorite?: (asset: Asset) => void;
-  priority?: boolean;
+  isFavorite?: boolean | undefined;
+  onToggleFavorite?: ((asset: Asset) => void) | undefined;
+  priority?: boolean | undefined;
 }
 
 export function AssetCard({
@@ -137,7 +137,7 @@ function Tag({
   title,
 }: {
   children: React.ReactNode;
-  title?: string;
+  title?: string | undefined;
 }) {
   return (
     <span

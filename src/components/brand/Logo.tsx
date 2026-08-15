@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { BRAND } from "@/lib/brand";
 import { cn } from "@/lib/utils";
 
-export function LogoMark({ className }: { className?: string }) {
+export function LogoMark({ className }: { className?: string | undefined }) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -24,8 +24,8 @@ export function Logo({
   className,
   showWordmark = true,
 }: {
-  className?: string;
-  showWordmark?: boolean;
+  className?: string | undefined;
+  showWordmark?: boolean | undefined;
 }) {
   return (
     <Link

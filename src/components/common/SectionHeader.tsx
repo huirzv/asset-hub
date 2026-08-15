@@ -6,8 +6,8 @@ export function SectionHeader({
   action,
 }: {
   title: string;
-  description?: string;
-  action?: ReactNode;
+  description?: string | undefined;
+  action?: ReactNode | undefined;
 }) {
   return (
     <div className="mb-5 flex items-end justify-between gap-4">

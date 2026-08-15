@@ -3,11 +3,11 @@ import type { Asset } from "@/lib/types";
 
 interface AssetGridProps {
   assets: Asset[];
-  loading?: boolean;
-  skeletonCount?: number;
-  favoriteIds?: Set<string>;
-  onToggleFavorite?: (asset: Asset) => void;
-  emptyState?: React.ReactNode;
+  loading?: boolean | undefined;
+  skeletonCount?: number | undefined;
+  favoriteIds?: Set<string> | undefined;
+  onToggleFavorite?: ((asset: Asset) => void) | undefined;
+  emptyState?: React.ReactNode | undefined;
 }
 
 export function AssetGrid({
