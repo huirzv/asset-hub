@@ -14,6 +14,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CollectionsRouteImport } from './routes/collections'
 import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as FavoritesRouteImport } from './routes/favorites'
+import { Route as UploadRouteImport } from './routes/upload'
 import { Route as AssetSlugRouteImport } from './routes/asset.$slug'
 import { Route as CollectionSlugRouteImport } from './routes/collection.$slug'
 import { Route as CreatorsUsernameRouteImport } from './routes/creators.$username'
@@ -43,6 +44,11 @@ const FavoritesRoute = FavoritesRouteImport.update({
   path: '/favorites',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UploadRoute = UploadRouteImport.update({
+  id: '/upload',
+  path: '/upload',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AssetSlugRoute = AssetSlugRouteImport.update({
   id: '/asset/$slug',
   path: '/asset/$slug',
@@ -65,6 +71,7 @@ export interface FileRoutesByFullPath {
   '/collections': typeof CollectionsRoute
   '/explore': typeof ExploreRoute
   '/favorites': typeof FavoritesRoute
+  '/upload': typeof UploadRoute
   '/asset/$slug': typeof AssetSlugRoute
   '/collection/$slug': typeof CollectionSlugRoute
   '/creators/$username': typeof CreatorsUsernameRoute
@@ -75,6 +82,7 @@ export interface FileRoutesByTo {
   '/collections': typeof CollectionsRoute
   '/explore': typeof ExploreRoute
   '/favorites': typeof FavoritesRoute
+  '/upload': typeof UploadRoute
   '/asset/$slug': typeof AssetSlugRoute
   '/collection/$slug': typeof CollectionSlugRoute
   '/creators/$username': typeof CreatorsUsernameRoute
@@ -86,6 +94,7 @@ export interface FileRoutesById {
   '/collections': typeof CollectionsRoute
   '/explore': typeof ExploreRoute
   '/favorites': typeof FavoritesRoute
+  '/upload': typeof UploadRoute
   '/asset/$slug': typeof AssetSlugRoute
   '/collection/$slug': typeof CollectionSlugRoute
   '/creators/$username': typeof CreatorsUsernameRoute
@@ -98,6 +107,7 @@ export interface FileRouteTypes {
     | '/collections'
     | '/explore'
     | '/favorites'
+    | '/upload'
     | '/asset/$slug'
     | '/collection/$slug'
     | '/creators/$username'
@@ -108,6 +118,7 @@ export interface FileRouteTypes {
     | '/collections'
     | '/explore'
     | '/favorites'
+    | '/upload'
     | '/asset/$slug'
     | '/collection/$slug'
     | '/creators/$username'
@@ -118,6 +129,7 @@ export interface FileRouteTypes {
     | '/collections'
     | '/explore'
     | '/favorites'
+    | '/upload'
     | '/asset/$slug'
     | '/collection/$slug'
     | '/creators/$username'
@@ -129,6 +141,7 @@ export interface RootRouteChildren {
   CollectionsRoute: typeof CollectionsRoute
   ExploreRoute: typeof ExploreRoute
   FavoritesRoute: typeof FavoritesRoute
+  UploadRoute: typeof UploadRoute
   AssetSlugRoute: typeof AssetSlugRoute
   CollectionSlugRoute: typeof CollectionSlugRoute
   CreatorsUsernameRoute: typeof CreatorsUsernameRoute
@@ -171,6 +184,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FavoritesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/upload': {
+      id: '/upload'
+      path: '/upload'
+      fullPath: '/upload'
+      preLoaderRoute: typeof UploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/asset/$slug': {
       id: '/asset/$slug'
       path: '/asset/$slug'
@@ -201,6 +221,7 @@ const rootRouteChildren: RootRouteChildren = {
   CollectionsRoute: CollectionsRoute,
   ExploreRoute: ExploreRoute,
   FavoritesRoute: FavoritesRoute,
+  UploadRoute: UploadRoute,
   AssetSlugRoute: AssetSlugRoute,
   CollectionSlugRoute: CollectionSlugRoute,
   CreatorsUsernameRoute: CreatorsUsernameRoute,
