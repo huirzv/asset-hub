@@ -47,20 +47,20 @@ function str(value: unknown): string | undefined {
 
 export const Route = createFileRoute("/explore")({
   validateSearch: (search: Record<string, unknown>): ExploreSearch => {
-    const sort = str(search.sort);
-    const page = Number(search.page);
+    const sort = str(search["sort"]);
+    const page = Number(search["page"]);
     const result: ExploreSearch = {};
-    const q = str(search.q);
+    const q = str(search["q"]);
     if (q) result.q = q;
-    const category = str(search.category);
+    const category = str(search["category"]);
     if (category) result.category = category;
-    const engine = str(search.engine);
+    const engine = str(search["engine"]);
     if (engine) result.engine = engine;
-    const format = str(search.format);
+    const format = str(search["format"]);
     if (format) result.format = format;
-    const license = str(search.license);
+    const license = str(search["license"]);
     if (license) result.license = license;
-    const style = str(search.style);
+    const style = str(search["style"]);
     if (style) result.style = style;
     if (sort && SORT_IDS.includes(sort)) result.sort = sort as SortId;
     if (Number.isFinite(page) && page > 1) result.page = Math.floor(page);
@@ -132,7 +132,7 @@ function ExplorePage() {
     queryFn: () => fetchAssets(search),
   });
 
-  const setFilter = (patch: Partial<ExploreSearch>) => {
+  const setFilter = (patch: Record<string, string | undefined>) => {
     navigate({
       search: (prev) => {
         const next: Record<string, unknown> = { ...prev, ...patch, page: undefined };
@@ -144,7 +144,7 @@ function ExplorePage() {
     });
   };
 
-  const activeFilters = (
+  const activeFilters: [string, string][] = (
     [
       ["q", search.q],
       ["category", search.category ? categoryLabel(search.category) : undefined],
@@ -152,8 +152,8 @@ function ExplorePage() {
       ["format", search.format],
       ["license", search.license],
       ["style", search.style],
-    ] as const
-  ).filter((entry): entry is readonly [string, string] => Boolean(entry[1]));
+    ] as [string, string | undefined][]
+  ).filter((entry): entry is [string, string] => Boolean(entry[1]));
 
   const total = query.data?.total ?? 0;
   const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));

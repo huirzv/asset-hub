@@ -45,8 +45,6 @@ export function SearchCommand({
     <CommandDialog
       open={open}
       onOpenChange={onOpenChange}
-      title="Search assets"
-      description="Search models, UI, textures and more"
       shouldFilter={false}
     >
       <CommandInput
